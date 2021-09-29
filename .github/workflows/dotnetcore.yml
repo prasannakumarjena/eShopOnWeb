@@ -22,3 +22,6 @@ jobs:
       
     - name: publish
       run: dotnet publish ./eShopOnWeb.sln --configuration Release -o publish
+      
+    - name: store zip
+      run: zip -r publish.zip publish
