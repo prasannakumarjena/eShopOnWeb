@@ -32,5 +32,5 @@ jobs:
       run: dotnet publish ./eShopOnWeb.sln --configuration Release -o publish
       
     - name: store zip
-      run: zip -r publish.zip publish
+      run: zip -r ${{steps.reponame.outputs.reponame}}.zip publish
       
