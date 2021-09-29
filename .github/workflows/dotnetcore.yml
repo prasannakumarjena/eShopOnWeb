@@ -35,7 +35,7 @@ jobs:
       run: zip -r ${{steps.reponame.outputs.reponame}}.zip publish
       
     - name: store zip
-      uses: actions/uplode-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
          name: ${{steps.reponame.outputs.reponame}}
          path: ${{steps.reponame.outputs.reponame}}.zip
