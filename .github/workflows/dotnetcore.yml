@@ -40,5 +40,5 @@ jobs:
         source_dir: '/'
         connection_string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
         container_name: ${{steps.reponame.outputs.reponame}}
-        sync: true    
+        sync: true   
       
