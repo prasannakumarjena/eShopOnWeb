@@ -34,4 +34,3 @@ jobs:
     - name: store zip
       run: zip -r publish.zip publish
       
-   - name: store    
