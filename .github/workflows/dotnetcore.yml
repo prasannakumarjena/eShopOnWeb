@@ -21,4 +21,4 @@ jobs:
       run: dotnet test ./eShopOnWeb.sln --configuration Release
       
     - name: publish
-      run: donnet publish --configuration Release -o publish
+      run: donnet publish ./eShopOnWeb.sln --configuration Release -o publish
