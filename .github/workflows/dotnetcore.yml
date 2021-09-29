@@ -6,9 +6,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    outputs:
+      reponame: ${{ steps.reponame.outputs.reponame}}
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: get repo name
+      id: reponame
+      run: echo "::set-output name=reponame::${GITHUB_REPOSITORY#*/}"
+      
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -25,3 +33,5 @@ jobs:
       
     - name: store zip
       run: zip -r publish.zip publish
+      
+   - name: store    
