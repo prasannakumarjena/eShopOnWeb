@@ -35,7 +35,9 @@ jobs:
          path: ${{steps.reponame.outputs.reponame}}.zip
          
     - name: store zip
-      run: ls
+      run: |
+            ls
+            pwd
 
     - name: uplode artifact to azure  
       uses: bacongobbler/azure-blob-storage-upload@v1.2.0
