@@ -41,7 +41,7 @@ jobs:
       uses: bacongobbler/azure-blob-storage-upload@v1.2.0
       with:
         source_dir: '.'
-        connection_string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        sas_url: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
         container_name: ${{steps.reponame.outputs.reponame}}
         sync: true   
       
