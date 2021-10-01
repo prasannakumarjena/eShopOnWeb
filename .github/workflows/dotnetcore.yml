@@ -36,20 +36,11 @@ jobs:
          
     - name: store zip
       run: ls
-   
-  push_artifact:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: downlode zip
-      uses: actions/download@v2
-      with:
-        name: ${{steps.reponame.outputs.reponame}}
-        
+
     - name: uplode artifact to azure  
       uses: bacongobbler/azure-blob-storage-upload@v1.2.0
       with:
-        source_dir: '.'
+        source_dir: '*.zip'
         connection_string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
         container_name: '${{steps.reponame.outputs.reponame}}'
         sync: true   
