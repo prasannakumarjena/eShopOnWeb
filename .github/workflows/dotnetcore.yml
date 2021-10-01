@@ -42,6 +42,6 @@ jobs:
       with:
         source_dir: '.'
         sas_url: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-        container_name: ${{steps.reponame.outputs.reponame}}
+        container_name: '${{steps.reponame.outputs.reponame}}'
         sync: true   
       
