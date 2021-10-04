@@ -9,6 +9,7 @@ jobs:
     
     outputs:
       reponame: ${{ steps.reponame.outputs.reponame}}
+      versionid: ${{ steps.versionid.outputs.versionid}}
 
     steps:
     - uses: actions/checkout@v2
@@ -24,6 +25,10 @@ jobs:
       
     - name: publish
       run: dotnet publish ./eShopOnWeb.sln --configuration Release -o publish
+      
+    - name: version
+      id: versionid
+      run: echo "::set-output name=versionid::1"
       
     - name: store zip
       run: zip -r ${{steps.reponame.outputs.reponame}}.zip publish
