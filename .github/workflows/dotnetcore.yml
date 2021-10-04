@@ -33,22 +33,17 @@ jobs:
     - name: store zip
       run: zip -r ${{steps.reponame.outputs.reponame}}.zip publish
       
-    - name: store zip
+    - name: Uplode zip to Github
       uses: actions/upload-artifact@v2
       with:
          name: ${{steps.reponame.outputs.reponame}}
          path: ${{steps.reponame.outputs.reponame}}.zip
-         
-    - name: store zip
-      run: |
-            ls
-            pwd
 
     - name: Login to Azure  Cloud with Az
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-    - name: uplode file
-      run: azcopy copy '${{steps.reponame.outputs.reponame}}.zip' 'https://artifactstorage1.blob.core.windows.net/prasanna123/${{steps.reponame.outputs.reponame}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
+    - name: uplode file to Blob
+      run: azcopy copy '${{steps.reponame.outputs.reponame}}.zip' 'https://artifactstorage1.blob.core.windows.net/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
       
