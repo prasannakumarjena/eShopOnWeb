@@ -31,7 +31,7 @@ jobs:
       
     - name: version
       id: versionid
-      run: echo "::set-output name=versionid::4"
+      run: echo "::set-output name=versionid::5"
       
     - name: store zip
       run: zip -r ${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip publish
@@ -48,5 +48,5 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
     - name: uplode file to Blob
-      run: azcopy copy '${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip' '${{env.BLOB_URL}}/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
+      run: azcopy copy './${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip' '${{env.BLOB_URL}}/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
       
