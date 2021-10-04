@@ -6,6 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env: 
+      BLOB_URL: https://artifactstorage1.blob.core.windows.net
+       
     
     outputs:
       reponame: ${{ steps.reponame.outputs.reponame}}
@@ -45,5 +48,5 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
     - name: uplode file to Blob
-      run: azcopy copy '${{steps.reponame.outputs.reponame}}.zip' 'https://artifactstorage1.blob.core.windows.net/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
+      run: azcopy copy '${{steps.reponame.outputs.reponame}}.zip' '${{env.BLOB_URL}}/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
       
