@@ -31,7 +31,7 @@ jobs:
       
     - name: version
       id: versionid
-      run: echo "::set-output name=versionid::2"
+      run: echo "::set-output name=versionid::3"
       
     - name: store zip
       run: zip -r ${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip publish
