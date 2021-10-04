@@ -34,13 +34,13 @@ jobs:
       run: echo "::set-output name=versionid::1"
       
     - name: store zip
-      run: zip -r ${{steps.reponame.outputs.reponame}}.zip publish
+      run: zip -r ${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip publish
       
     - name: Uplode zip to Github
       uses: actions/upload-artifact@v2
       with:
-         name: ${{steps.reponame.outputs.reponame}}
-         path: ${{steps.reponame.outputs.reponame}}.zip
+         name: ${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}
+         path: ${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip
 
     - name: Login to Azure  Cloud with Az
       uses: azure/login@v1
@@ -48,5 +48,5 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
     - name: uplode file to Blob
-      run: azcopy copy '${{steps.reponame.outputs.reponame}}.zip' '${{env.BLOB_URL}}/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
+      run: azcopy copy '${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip' '${{env.BLOB_URL}}/${{steps.reponame.outputs.reponame}}/${{steps.reponame.outputs.reponame}}_${{steps.versionid.outputs.versionid}}.zip${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'   
       
